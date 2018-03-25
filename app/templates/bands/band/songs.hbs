@@ -9,3 +9,20 @@
     </li>
   {{/each}}
 </ul>
+
+<div class="rr-new-label">
+  {{#if isAddingSong}}
+    <form class="rr-inline-form" onsubmit={{action "saveSong"}}>
+      {{input type="text" class="RR_input" value=newSongTitle placeholder="New Song"}}
+      <button type="button" class="rr-action-button" disabled={{isAddButtonDisabled}} onclick={{action "saveSong"}}>Add</button>
+      <span class="rr-cancel-icon" onclick={{action "cancelAddSong"}}>
+        {{fa-icon "times"}}
+      </span>
+    </form>
+  {{else}}
+    <label onclick={{action "addSong"}}>
+      {{fa-icon "plus"}}
+      <span class="ml1">Add new song</span>
+    </label>
+  {{/if}}
+</div>
