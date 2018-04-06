@@ -46,9 +46,20 @@ a {
   border-bottom: 1px solid;
 }
 
-.rr-page-header > .rr-app-title {
+.rr-header-link > .rr-app-title {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.rr-panel {
+  padding: 1rem;
+  border: .125rem solid;
+  border-radius: .125rem;
+}
+
+.rr-textarea {
+  width: 100%;
+  padding: .5rem;
 }
 
 .rr-app-title > .rr-subtitle {
@@ -144,7 +155,7 @@ a {
 .rr-sidebar {
   float: left;
   width: calc( 100% / 3 ); /* .w-third */
-};
+}
 
 .rr-main-panel {
   float: left;
@@ -165,11 +176,11 @@ a {
   text-align: center;
 }
 
-.rr-band-link > .pointer {
+.rr-band-link > .rr-pointer {
   margin-left: 5px;
   display: none;
 }
 
-.rr-band-link.active > .pointer {
+.rr-band-link.active > .rr-pointer {
   display: inline-block;
 }
