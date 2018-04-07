@@ -16,12 +16,18 @@ export default Controller.extend({
       this.set('isAddingSong', false);
     },
 
-    saveSong(event) {
-      let newSong = Song.create({ title: this.get('newSongTitle')});
-
+    async saveSong(event) {
       event.preventDefault();
 
-      this.get('model.songs').pushObject(newSong);
+      let band = this.get('model');
+
+      let newSong = this.get('store').createRecord('song', {
+        title: this.get('newSongTitle'),
+        band
+      })
+
+      await newSong.save();
+
       this.set('newSongTitle', '');
     },
 
@@ -29,6 +35,8 @@ export default Controller.extend({
       let currentRating = song.get('rating');
 
       song.set('rating', currentRating === rating ? 0 : rating);
+
+      return song.save();
     }
   }
 });

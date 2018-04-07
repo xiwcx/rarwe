@@ -16,12 +16,12 @@ export default Controller.extend({
       this.set('isAddingBand', false);
     },
 
-    saveBand(event) {
-      let newBand = Band.create({ name: this.get('newBandName')});
-
+    async saveBand(event) {
       event.preventDefault();
 
-      this.get('model').pushObject(newBand);
+      let newBand = this.get('store').createRecord('band', { name: this.get('newBandName')});
+
+      await newBand.save();
 
       this.setProperties({
         newBandName: '',
