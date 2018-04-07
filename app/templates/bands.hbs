@@ -1,8 +1,8 @@
 <div class="rr-sidebar">
   <ul class="rr-list">
     {{#each model as |band|}}
-      <li>
-        {{#link-to "bands.band" band.id class="rr-band-link"}}
+      <li data-test-rr="band-list-item">
+        {{#link-to "bands.band" band.id class="rr-band-link" data-test-rr="band-link"}}
           {{band.name}}
 
           <span class="rr-pointer">
@@ -16,14 +16,14 @@
   <div class="rr-new-label">
     {{#if isAddingBand}}
       <form class="rr-inline-form" onsubmit={{action "saveBand"}}>
-        {{input type="text" class="RR_input" value=newBandName placeholder="New Band"}}
-        <button type="button" class="rr-action-button" disabled={{isAddButtonDisabled}} onclick={{action "saveBand"}}>Add</button>
+        {{input type="text" class="rr-input" value=newBandName placeholder="New Band" data-test-rr="new-band-input"}}
+        <button type="button" class="rr-action-button" disabled={{isAddButtonDisabled}} onclick={{action "saveBand"}} data-test-rr="new-band-button">Add</button>
         <span class="rr-cancel-icon" onclick={{action "cancelAddBand"}}>
           {{fa-icon "times"}}
         </span>
       </form>
     {{else}}
-      <label onclick={{action "addBand"}}>
+      <label onclick={{action "addBand"}} data-test-rr="new-band-label">
         {{fa-icon "plus"}}
         <span class="ml1">Add new band</span>
       </label>
