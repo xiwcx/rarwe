@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { createSong } from 'rarwe/tests/helpers/custom-helpers';
+import { createSong, loginAs } from 'rarwe/tests/helpers/custom-helpers';
 import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
@@ -13,6 +13,7 @@ module('Acceptance | Songs', function(hooks) {
     server.create('song', {title: 'Creep', bandId: 1});
     server.create('song', {title: 'Karma Police', bandId: 1});
 
+    await loginAs('dave@tcv.com');
     await visit('/bands/1/');
 
     assert.dom('[data-test-rr=song-list-item]').exists({count: 2}, 'Songs are rendered');
@@ -24,6 +25,7 @@ module('Acceptance | Songs', function(hooks) {
     server.create('band', {name: 'Radiohead', id: 1});
     server.create('song', {title: 'Creep', bandId: 1});
 
+    await loginAs('dave@tcv.com');
     await visit('/bands/1/');
 
     await createSong('Karma Police');
